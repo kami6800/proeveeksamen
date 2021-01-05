@@ -1,5 +1,7 @@
 <template>
-  <router-view></router-view>
+  <div class="m-0 m-auto w-96">
+    <router-view></router-view>
+  </div>
 </template>
 
 <script>
