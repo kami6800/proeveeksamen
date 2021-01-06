@@ -1,8 +1,11 @@
 <template>
-    <div class="w-full p-4 m-4 bg-white">
+    <div class="w-full p-4 m-4 bg-white break-words">
         <h2 class="font-bold text-xl">{{title}}</h2>
         <h3 class="font-thin text-sm">{{timeSince}}</h3>
         <p>{{description}}</p>
+         <svg class="sadEmoji h-10 w-10 mt-2 text-yellow-300">
+            <use v-bind:href="emote" />
+            </svg>
     </div>
 </template>
 
@@ -11,7 +14,8 @@ export default {
     props:["id", "title", "description", "emoji", "timestamp"],
     data(){
         return{
-            time:this.timestamp
+            time:this.timestamp,
+            emote:"#" + this.emoji
         }
     },
     computed:{
@@ -62,7 +66,11 @@ export default {
                     return interval + " minutes ago";
             }
             
-            return seconds + " seconds ago";
+            if(seconds >1){
+                return seconds + " seconds ago";
+            }
+            
+            return "now";
         }
     }
 }

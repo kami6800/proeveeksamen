@@ -24,7 +24,10 @@ const store = createStore({
             state.moods = JSON.parse(localStorage.getItem("moods")) ?? [];
         },
         addMood(state, payload){
-            state.moods.push(payload);
+            //Add mood
+            state.moods.unshift(payload);
+            //save to localstorage
+            localStorage.setItem("moods", JSON.stringify(state.moods));
         }
     },
     actions:{

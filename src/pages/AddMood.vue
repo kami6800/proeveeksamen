@@ -28,6 +28,7 @@ export default {
   },
   methods:{
     addMood(){
+      //Add mood
       const mood = {
         id:Date.now(),
         timestamp:Date.now(),
@@ -37,7 +38,8 @@ export default {
       }
       this.$store.dispatch("addMood", mood);
 
-      localStorage.setItem("moods", JSON.stringify(this.$store.getters.getMoods));
+      //return to all moods
+      this.$router
     },
     changeSelectedMood(newMood){
       this.selectedMood = newMood;
