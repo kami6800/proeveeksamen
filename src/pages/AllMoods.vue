@@ -2,6 +2,7 @@
     <p v-if="moods.length<=0">Du har endnu ikke oprettet en aktivitet</p>
     <mood-card v-else v-for="mood in moods"
     :key="mood"
+    :id="mood.id"
     :title="mood.title"
     :description="mood.description"
     :emoji="mood.mood"

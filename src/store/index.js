@@ -28,6 +28,13 @@ const store = createStore({
             state.moods.unshift(payload);
             //save to localstorage
             localStorage.setItem("moods", JSON.stringify(state.moods));
+        },
+        deleteMood(state, payload){
+            console.log(state.moods[0].id != payload);
+            //Delete mood
+            state.moods = state.moods.filter(function(mood){console.log(mood.id, payload); return mood.id != payload});
+            //Save to localstorage
+            localStorage.setItem("moods", JSON.stringify(state.moods));
         }
     },
     actions:{
@@ -36,6 +43,9 @@ const store = createStore({
         },
         addMood(context, payload){
             context.commit("addMood", payload);
+        },
+        deleteMood(context, payload){
+            context.commit("deleteMood", payload);
         }
     },
     getters:{

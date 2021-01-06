@@ -39,7 +39,7 @@ export default {
       this.$store.dispatch("addMood", mood);
 
       //return to all moods
-      this.$router
+      this.$router.push("/all");
     },
     changeSelectedMood(newMood){
       this.selectedMood = newMood;

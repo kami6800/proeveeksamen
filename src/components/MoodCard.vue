@@ -1,5 +1,6 @@
 <template>
     <div class="w-full p-4 m-4 bg-white break-words">
+        <button @click="deleteCard" class="float-right">X</button>
         <h2 class="font-bold text-xl">{{title}}</h2>
         <h3 class="font-thin text-sm">{{timeSince}}</h3>
         <p>{{description}}</p>
@@ -69,8 +70,14 @@ export default {
             if(seconds >1){
                 return seconds + " seconds ago";
             }
-            
+
             return "now";
+        }
+    },
+    methods:{
+        deleteCard(){
+            this.$store.dispatch("deleteMood", this.id);
+            console.log(this.id);
         }
     }
 }
