@@ -19,6 +19,16 @@ const store = createStore({
             }]
         }
     },
+    mutations:{
+        addMood(state, payload){
+            state.moods.push(payload);
+        }
+    },
+    actions:{
+        addMood(context, payload){
+            context.commit("addMood", payload);
+        }
+    },
     getters:{
         getMoods(state){
             return state.moods;
