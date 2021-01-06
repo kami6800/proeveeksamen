@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+    svg{
+        @apply w-16;
+        @apply text-gray-200;
+    }
+    [type=radio]{
+        @apply w-0;
+        @apply h-0;
+        @apply absolute;
+        @apply opacity-0;
+    }
+    [type=radio]:checked + svg{
+        @apply text-yellow-300;
+    }
+  }
