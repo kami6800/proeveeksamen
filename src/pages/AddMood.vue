@@ -1,6 +1,7 @@
 <template>
-  <router-link to="all">
-    <svg class="text-green-800 w-7 h-7">
+  <router-link class="p-1" to="all">
+    <svg class="text-green-800 w-7 h-7 transition-all duration-150
+                                    hover:text-green-500">
       <use xlink:href="#arrowBack" />
     </svg>
   </router-link>
@@ -11,7 +12,8 @@
     <mood-emojis @emoji-changed="changeSelectedMood"></mood-emojis>
     <p class="mb-2">Beskrivelse</p>
     <textarea class="w-full p-2 h-52 border" ref="description"/>
-    <button class="float-right px-4 py-2 mt-8 bg-green-800 text-white rounded" type="submit">Gem</button>
+    <button class="float-right px-4 py-2 mt-8 bg-green-800 text-white rounded transition-all duration-150
+                                    hover:bg-green-600 hover:shadow-lg" type="submit">Gem</button>
   </form>
 </template>
 

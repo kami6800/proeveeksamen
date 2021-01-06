@@ -3,9 +3,14 @@
 @tailwind utilities;
 
 @layer base {
-    svg{
+    [type=radio] + svg{
         @apply w-16;
+        @apply h-16;
+        @apply my-8;
         @apply text-gray-200;
+        @apply hover:text-gray-100;
+        @apply transition-all;
+        @apply duration-200;
     }
     [type=radio]{
         @apply w-0;

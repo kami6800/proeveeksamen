@@ -7,7 +7,8 @@
     :description="mood.description"
     :emoji="mood.mood"
     :timestamp="mood.timestamp"></mood-card>
-    <router-link to="/add" class="float-right bg-green-800 rounded-full w-16 h-16 mt-16">
+    <router-link to="/add" class="float-right bg-green-800 rounded-full w-16 h-16 mt-16 transition-all duration-150
+                                    hover:bg-green-600 hover:shadow-lg">
     <svg class="text-green-100 w-16 h-16">
       <use xlink:href="#plusIcon" />
     </svg>
@@ -22,7 +23,12 @@ export default {
     },
     data(){
         return{
-            moods: this.$store.getters.getMoods
+            //moods: this.$store.getters.getMoods
+        }
+    },
+    computed:{
+        moods(){
+            return this.$store.getters.getMoods;
         }
     }
 }
