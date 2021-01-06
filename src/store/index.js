@@ -20,11 +20,17 @@ const store = createStore({
         }
     },
     mutations:{
+        loadMoods(state){
+            state.moods = JSON.parse(localStorage.getItem("moods")) ?? [];
+        },
         addMood(state, payload){
             state.moods.push(payload);
         }
     },
     actions:{
+        loadMoods(context){
+            context.commit("loadMoods");
+        },
         addMood(context, payload){
             context.commit("addMood", payload);
         }

@@ -36,7 +36,8 @@ export default {
         mood: this.selectedMood
       }
       this.$store.dispatch("addMood", mood);
-      console.log(this.$store.getters.getMoods);
+
+      localStorage.setItem("moods", JSON.stringify(this.$store.getters.getMoods));
     },
     changeSelectedMood(newMood){
       this.selectedMood = newMood;

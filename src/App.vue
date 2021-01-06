@@ -11,6 +11,10 @@ export default {
   name: 'App',
   components: {
 
+  },
+  mounted(){
+    this.$store.dispatch("loadMoods");
+    console.log(JSON.parse(localStorage.getItem("moods")));
   }
 }
 </script>

@@ -19,9 +19,6 @@ export default {
     components:{
         MoodCard
     },
-    mounted(){
-        console.log(this.$store.getters.getMoods);
-    },
     data(){
         return{
             moods: this.$store.getters.getMoods
