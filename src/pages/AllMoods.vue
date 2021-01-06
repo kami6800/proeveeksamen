@@ -6,11 +6,11 @@
     :description="mood.description"
     :emoji="mood.mood"
     :timestamp="mood.timestamp"></mood-card>
-    <button class="float-right bg-green-800 rounded-full w-16 h-16 mt-16">
+    <router-link to="/add" class="float-right bg-green-800 rounded-full w-16 h-16 mt-16">
     <svg class="text-green-100 w-16 h-16">
       <use xlink:href="#plusIcon" />
     </svg>
-  </button>
+    </router-link>
 </template>
 
 <script>

@@ -1,9 +1,9 @@
 <template>
-  <button>
-    <svg class="text-green-800 w-7 h-7 my-2">
+  <router-link to="all">
+    <svg class="text-green-800 w-7 h-7">
       <use xlink:href="#arrowBack" />
     </svg>
-  </button>
+  </router-link>
   
   <form>
     <p class="mb-2">Hvordan har du det?</p>

@@ -1,13 +1,13 @@
 <template>
     <div class="flex justify-around">
         <label>
-            <input type="radio" name="test" value="small" checked>
+            <input type="radio" name="test" value="small">
             <svg class="sadEmoji">
             <use xlink:href="#1" />
             </svg>
         </label>
         <label>
-            <input type="radio" name="test" value="small" checked>
+            <input type="radio" name="test" value="small">
             <svg class="sadEmoji">
             <use xlink:href="#2" />
             </svg>
@@ -19,13 +19,13 @@
             </svg>
         </label>
         <label>
-            <input type="radio" name="test" value="small" checked>
+            <input type="radio" name="test" value="small">
             <svg class="sadEmoji">
             <use xlink:href="#4" />
             </svg>
         </label>
         <label>
-            <input type="radio" name="test" value="small" checked>
+            <input type="radio" name="test" value="small">
             <svg class="sadEmoji">
             <use xlink:href="#5" />
             </svg>
