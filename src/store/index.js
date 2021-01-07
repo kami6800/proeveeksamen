@@ -26,23 +26,32 @@ const store = createStore({
         addMood(state, payload){
             //Add mood
             state.moods.unshift(payload);
-            //save to localstorage
-            localStorage.setItem("moods", JSON.stringify(state.moods));
+            this.commit("save");
         },
         deleteMood(state, payload){
             console.log(state.moods[0].id != payload);
             //Delete mood
             state.moods = state.moods.filter(function(mood){console.log(mood.id, payload); return mood.id != payload});
-            //Save to localstorage
-            localStorage.setItem("moods", JSON.stringify(state.moods));
+            this.commit("save");
         },
         editMood(state, payload){
             const index = state.moods.findIndex(mood=>mood.id===payload.id);
             state.moods[index].title = payload.title;
             state.moods[index].description = payload.description;
             state.moods[index].mood = payload.mood;
-            //Save to localstorage
-            localStorage.setItem("moods", JSON.stringify(state.moods));
+            console.log("edit");
+            this.commit("save");
+        },
+        save(state){
+        //     console.log("save");
+        //    fetch("https://mood-8eedd-default-rtdb.europe-west1.firebasedatabase.app/moods.json", {
+        //        method: "POST",
+        //        headers: {
+        //            "Content-Type":"application/json"
+        //        },
+        //        body: JSON.stringify(state.moods)
+        //    });
+           localStorage.setItem("moods", JSON.stringify(state.moods));
         }
     },
     actions:{
