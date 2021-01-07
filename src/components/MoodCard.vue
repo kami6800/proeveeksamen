@@ -1,9 +1,9 @@
 <template>
     <div class="w-full p-4 pb-8 m-4 bg-white break-words">
         <button @click="deleteCard" class="float-right">X</button>
-        <input class="font-bold text-xl p-2 border" :value="title" ref="title" :readonly="!isEditing">
+        <input class="font-bold text-xl p-2 border" v-model="titleModel" :readonly="!isEditing">
         <h3 class="font-thin text-sm">{{timeSince}}</h3>
-        <textarea class="w-full h-24 p-2 border" :value="description" ref="desc" :readonly="!isEditing"></textarea>
+        <textarea class="w-full h-24 p-2 border" v-model="descModel" :readonly="!isEditing"></textarea>
 
          <svg v-if="!isEditing" class="sadEmoji h-10 w-10 mt-2 text-yellow-300">
             <use v-bind:href="emote" />
@@ -30,7 +30,9 @@ export default {
             time:this.timestamp,
             //emote:"#" + this.emoji,
             isEditing:false,
-            selectedMood: this.emoji
+            selectedMood: this.emoji,
+            titleModel:this.title,
+            descModel:this.description
         }
     },
     computed:{
@@ -103,8 +105,8 @@ export default {
             this.isEditing = false;
             const moodObject = {
                 id: this.id,
-                title: this.$refs.title.value,
-                description: this.$refs.desc.value,
+                title: this.titleModel,
+                description: this.descModel,
                 mood: this.selectedMood
             }
             this.$store.dispatch("editMood", moodObject);
