@@ -8,7 +8,7 @@
          <svg v-if="!isEditing" class="sadEmoji h-10 w-10 mt-2 text-yellow-300">
             <use v-bind:href="emote" />
          </svg>
-         <mood-emojis v-else @emoji-changed="changeSelectedMood"></mood-emojis>
+         <mood-emojis v-else @emoji-changed="changeSelectedMood" :checked-mood="selectedMood"></mood-emojis>
 
         <button v-if="!isEditing" @click="startEditing" class="w-6 h-6 float-right
                         hover:h-18 hover:w-18">

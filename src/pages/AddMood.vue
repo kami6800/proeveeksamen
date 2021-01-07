@@ -9,7 +9,7 @@
   <form @submit.prevent="addMood">
     <p class="mb-2">Hvordan har du det?</p>
     <input class="w-full h-10 p-2 border" type="text" ref="title"/>
-    <mood-emojis @emoji-changed="changeSelectedMood"></mood-emojis>
+    <mood-emojis @emoji-changed="changeSelectedMood" :checked-mood="3"></mood-emojis>
     <p class="mb-2">Beskrivelse</p>
     <textarea class="w-full p-2 h-52 border" ref="description"/>
     <button class="float-right px-4 py-2 mt-8 bg-green-800 text-white rounded transition-all duration-150
