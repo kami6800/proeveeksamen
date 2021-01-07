@@ -18,11 +18,7 @@
 </template>
 
 <script>
-import MoodEmojis from "../components/MoodEmojis"
 export default {
-  components:{
-    MoodEmojis
-  },
   data(){
     return{
       selectedMood:3
@@ -32,7 +28,7 @@ export default {
     addMood(){
       //return to all moods
       this.$router.push("/all");
-      
+
       //Add mood
       const mood = {
         id:Date.now(),

@@ -3,10 +3,13 @@
         <button @click="deleteCard" class="float-right">X</button>
         <input class="font-bold text-xl p-2 border" :value="title" ref="title" :readonly="!isEditing">
         <h3 class="font-thin text-sm">{{timeSince}}</h3>
-        <textarea class="w-full p-2 border" :value="description" ref="desc" :readonly="!isEditing"></textarea>
-         <svg class="sadEmoji h-10 w-10 mt-2 text-yellow-300">
+        <textarea class="w-full h-24 p-2 border" :value="description" ref="desc" :readonly="!isEditing"></textarea>
+
+         <svg v-if="!isEditing" class="sadEmoji h-10 w-10 mt-2 text-yellow-300">
             <use v-bind:href="emote" />
          </svg>
+         <mood-emojis v-else @emoji-changed="changeSelectedMood"></mood-emojis>
+
         <button v-if="!isEditing" @click="startEditing" class="w-6 h-6 float-right
                         hover:h-18 hover:w-18">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -18,16 +21,22 @@
 </template>
 
 <script>
+import MoodEmojis from './MoodEmojis.vue';
 export default {
+  components: { MoodEmojis },
     props:["id", "title", "description", "emoji", "timestamp"],
     data(){
         return{
             time:this.timestamp,
-            emote:"#" + this.emoji,
-            isEditing:false
+            //emote:"#" + this.emoji,
+            isEditing:false,
+            selectedMood: this.emoji
         }
     },
     computed:{
+        emote(){
+            return "#" + this.emoji;
+        },
         timeSince(){
             let seconds = Math.floor((Date.now() - this.time) / 1000);
             let interval = seconds/31536000;
@@ -95,9 +104,13 @@ export default {
             const moodObject = {
                 id: this.id,
                 title: this.$refs.title.value,
-                description: this.$refs.desc.value
+                description: this.$refs.desc.value,
+                mood: this.selectedMood
             }
             this.$store.dispatch("editMood", moodObject);
+        },
+        changeSelectedMood(val){
+            this.selectedMood = val;
         }
     }
 }

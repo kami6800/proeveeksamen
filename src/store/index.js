@@ -40,6 +40,7 @@ const store = createStore({
             const index = state.moods.findIndex(mood=>mood.id===payload.id);
             state.moods[index].title = payload.title;
             state.moods[index].description = payload.description;
+            state.moods[index].mood = payload.mood;
             //Save to localstorage
             localStorage.setItem("moods", JSON.stringify(state.moods));
         }
