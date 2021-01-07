@@ -1,12 +1,19 @@
 <template>
-    <div class="w-full p-4 m-4 bg-white break-words">
+    <div class="w-full p-4 pb-8 m-4 bg-white break-words">
         <button @click="deleteCard" class="float-right">X</button>
-        <h2 class="font-bold text-xl">{{title}}</h2>
+        <input class="font-bold text-xl p-2 border" :value="title" ref="title" :readonly="!isEditing">
         <h3 class="font-thin text-sm">{{timeSince}}</h3>
-        <p>{{description}}</p>
+        <textarea class="w-full p-2 border" :value="description" ref="desc" :readonly="!isEditing"></textarea>
          <svg class="sadEmoji h-10 w-10 mt-2 text-yellow-300">
             <use v-bind:href="emote" />
+         </svg>
+        <button v-if="!isEditing" @click="startEditing" class="w-6 h-6 float-right
+                        hover:h-18 hover:w-18">
+            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
             </svg>
+        </button>
+        <button v-else @click="stopEditing" class="float-right">Save</button>
     </div>
 </template>
 
@@ -16,7 +23,8 @@ export default {
     data(){
         return{
             time:this.timestamp,
-            emote:"#" + this.emoji
+            emote:"#" + this.emoji,
+            isEditing:false
         }
     },
     computed:{
@@ -78,7 +86,26 @@ export default {
         deleteCard(){
             this.$store.dispatch("deleteMood", this.id);
             console.log(this.id);
+        },
+        startEditing(){
+            this.isEditing = true;
+        },
+        stopEditing(){
+            this.isEditing = false;
+            const moodObject = {
+                id: this.id,
+                title: this.$refs.title.value,
+                description: this.$refs.desc.value
+            }
+            this.$store.dispatch("editMood", moodObject);
         }
     }
 }
 </script>
+
+<style scoped>
+    input:read-only,
+    textarea:read-only {
+        border:none;
+    }
+</style>

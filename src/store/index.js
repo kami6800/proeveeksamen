@@ -35,6 +35,13 @@ const store = createStore({
             state.moods = state.moods.filter(function(mood){console.log(mood.id, payload); return mood.id != payload});
             //Save to localstorage
             localStorage.setItem("moods", JSON.stringify(state.moods));
+        },
+        editMood(state, payload){
+            const index = state.moods.findIndex(mood=>mood.id===payload.id);
+            state.moods[index].title = payload.title;
+            state.moods[index].description = payload.description;
+            //Save to localstorage
+            localStorage.setItem("moods", JSON.stringify(state.moods));
         }
     },
     actions:{
@@ -46,6 +53,9 @@ const store = createStore({
         },
         deleteMood(context, payload){
             context.commit("deleteMood", payload);
+        },
+        editMood(context, payload){
+            context.commit("editMood", payload)
         }
     },
     getters:{

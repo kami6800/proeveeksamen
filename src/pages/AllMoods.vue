@@ -48,7 +48,7 @@ export default {
     }
 
     .mood-list-leave-to{
-        transform: translateY(-50px);
+        transform: translateY(-500px);
         opacity:0;
     }
 
