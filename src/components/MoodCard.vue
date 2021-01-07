@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full p-4 pb-8 m-4 bg-white break-words">
+    <div class="w-11/12 p-4 pb-8 m-4 bg-white break-words">
         <button @click="deleteCard" class="float-right">X</button>
         <input class="font-bold text-xl p-2 border" v-model="titleModel" :readonly="!isEditing">
         <h3 class="font-thin text-sm">{{timeSince}}</h3>

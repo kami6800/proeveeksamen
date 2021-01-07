@@ -1,5 +1,5 @@
 <template>
-    <p v-if="moods.length<=0">Du har endnu ikke oprettet en aktivitet</p>
+    <p v-if="moods.length<=0" class="my-16">Du har endnu ikke oprettet en aktivitet</p>
     <transition-group class="relative" v-else tag="div" name="mood-list">
     <mood-card v-for="mood in moods"
     :key="mood"
@@ -9,7 +9,7 @@
     :emoji="mood.mood"
     :timestamp="mood.timestamp"></mood-card>
     </transition-group>
-    <router-link to="/add" class="float-right bg-green-800 rounded-full w-16 h-16 mt-16 transition-all duration-150
+    <router-link to="/add" class="float-right bg-green-800 rounded-full w-16 h-16 my-16 transition-all duration-150
                                     hover:bg-green-600 hover:shadow-lg">
     <svg class="text-green-100 w-16 h-16">
       <use xlink:href="#plusIcon" />
