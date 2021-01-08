@@ -96,7 +96,6 @@ export default {
     methods:{
         deleteCard(){
             this.$store.dispatch("deleteMood", this.id);
-            console.log(this.id);
         },
         startEditing(){
             this.isEditing = true;
