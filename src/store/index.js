@@ -9,13 +9,22 @@ const store = createStore({
         }
     },
     mutations:{
+        loadApp(state){
+            const login = localStorage.getItem("login");
+            if(login){
+                state.username = login;
+                state.isAuthorized = true;
+            }
+        },
         login(state, payload){
             state.isAuthorized = true;
             state.username = payload.username;
+            localStorage.setItem("login", payload.username);
         },
         logout(state){
             state.isAuthorized = false;
             state.username = "";
+            //localStorage.removeItem("login");
         },
         loadMoods(state){
             //state.moods = JSON.parse(localStorage.getItem("moods")) ?? [];
@@ -26,13 +35,14 @@ const store = createStore({
             // }).then(function(data){
             //     state.moods = data;
             // });
+            if(state.moods.length>=1) return;
+
+            console.log(state.username);
             fetch(`https://mood-8eedd-default-rtdb.europe-west1.firebasedatabase.app/${state.username}/moods.json`)
             .then(function(response){
                 if(response.ok)
                     return response.json();
             }).then(function(data){
-                console.log(data);
-                console.log(state.username);
                 //load results
                 const results = [];
                 for(const id in data){
@@ -48,9 +58,9 @@ const store = createStore({
                 //Sort results
                 results.sort((a, b)=>a.id<b.id);
 
-                state.moods = results;
+                results.forEach(function(r){state.moods.push(r)});
+                //state.moods = results;
             });
-            console.log(state.username);
         },
         saveMood(state, payload){
             fetch(`https://mood-8eedd-default-rtdb.europe-west1.firebasedatabase.app/${state.username}/moods.json?id=${payload.id}`, {
@@ -69,7 +79,7 @@ const store = createStore({
                },
                body: JSON.stringify(state.moods)
            });
-           localStorage.setItem("moods", JSON.stringify(state.moods));
+           //localStorage.setItem("moods", JSON.stringify(state.moods));
         },
         addMood(state, payload){
             //Add mood
@@ -90,6 +100,9 @@ const store = createStore({
         }
     },
     actions:{
+        loadApp(context){
+            context.commit("loadApp");
+        },
         login(context, payload){
             context.commit("login", payload);
         },

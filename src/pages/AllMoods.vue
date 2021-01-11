@@ -32,6 +32,11 @@ export default {
         moods(){
             return this.$store.getters.getMoods;
         }
+    },
+    mounted(){
+        this.$store.dispatch("loadApp");
+        this.$store.dispatch("loadMoods");
+        console.log("mounted");
     }
 }
 </script>
