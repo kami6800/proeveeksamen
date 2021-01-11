@@ -26,9 +26,6 @@ export default {
   },
   methods:{
     addMood(){
-      //return to all moods
-      this.$router.push("/all");
-
       //Add mood
       const mood = {
         id:Date.now(),
@@ -39,7 +36,8 @@ export default {
       }
       this.$store.dispatch("addMood", mood);
 
-      
+      //return to all moods
+      this.$router.push("/all");
     },
     changeSelectedMood(newMood){
       this.selectedMood = newMood;
