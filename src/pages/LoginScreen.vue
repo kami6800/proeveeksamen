@@ -7,6 +7,7 @@
         <button @click="login" class="my-8 bg-green-800 text-white p-2 px-4 rounded transition-all duration-150
                    hover:bg-green-600 hover:shadow-lg">Login</button>
         <p>No account? <router-link class="text-blue-600 font-semibold hover:text-blue-400" to="/all">Sign up</router-link></p>
+        <button @click="signUp">aaa</button>
      </div>
 </template>
 
@@ -23,6 +24,10 @@ export default {
             this.$store.dispatch("login", {username:this.username, password:this.password});
             //this.$store.dispatch("loadMoods");
             this.$router.push("/all");
+        },
+        signUp(){
+            this.$store.dispatch("createUser", {username:this.username, password:this.password});
+            console.log("clicked");
         }
     }
 }
