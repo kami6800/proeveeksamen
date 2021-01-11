@@ -11,9 +11,6 @@ export default {
   name: 'App',
   components: {
 
-  },
-  mounted(){
-    this.$store.dispatch("loadMoods");
   }
 }
 </script>

@@ -11,7 +11,7 @@ const store = createStore({
     mutations:{
         login(state, payload){
             state.isAuthorized = true;
-            state.username = payload;
+            state.username = payload.username;
         },
         logout(state){
             state.isAuthorized = false;
@@ -26,11 +26,13 @@ const store = createStore({
             // }).then(function(data){
             //     state.moods = data;
             // });
-            fetch("https://mood-8eedd-default-rtdb.europe-west1.firebasedatabase.app/moods.json")
+            fetch(`https://mood-8eedd-default-rtdb.europe-west1.firebasedatabase.app/${state.username}/moods.json`)
             .then(function(response){
                 if(response.ok)
                     return response.json();
             }).then(function(data){
+                console.log(data);
+                console.log(state.username);
                 //load results
                 const results = [];
                 for(const id in data){
@@ -48,19 +50,19 @@ const store = createStore({
 
                 state.moods = results;
             });
+            console.log(state.username);
         },
         saveMood(state, payload){
-            fetch(`https://mood-8eedd-default-rtdb.europe-west1.firebasedatabase.app/moods.json?id=${payload.id}`, {
+            fetch(`https://mood-8eedd-default-rtdb.europe-west1.firebasedatabase.app/${state.username}/moods.json?id=${payload.id}`, {
                 method:"POST",
                 headers: {
                     "Content-Type":"application/json"
                 },
                 body: JSON.stringify(payload)
             });
-            console.log(payload);
         },
         updateMood(state, payload){
-           fetch(`https://mood-8eedd-default-rtdb.europe-west1.firebasedatabase.app/moods.json?id=${payload.id}`, {
+           fetch(`https://mood-8eedd-default-rtdb.europe-west1.firebasedatabase.app/${state.username}/moods.json?id=${payload.id}`, {
                method: "PUT",
                headers: {
                    "Content-Type":"application/json"
@@ -88,6 +90,9 @@ const store = createStore({
         }
     },
     actions:{
+        login(context, payload){
+            context.commit("login", payload);
+        },
         loadMoods(context){
             context.commit("loadMoods");
         },
